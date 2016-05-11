@@ -8,6 +8,13 @@ in a format suitable for import into a relational database.
 and its contents, for example as an analytical supplement to offline backups,
 and for easy import into R or a SQL database for subsequent processing.
 
+It is a good idea to leave a trailing backslash on each passed path:
+> `dicrawl C:\`
+
+This will create a subfolder, dircrawl, from wherever it is invoked,
+and within there, another subfolder with the timestamp (yymmdd.HHMMSS),
+and in there, four log files: {dir,file,error,crawl}.log.
+
 ### details
 
 The compiled dicrawl.exe executable:
@@ -60,6 +67,10 @@ from their last good backup.
 
 `dircrawl` was also used to detect redundancy and to reconstruct
 the history of workflows with file-based artifacts.
+
+### performance
+
+`dircrawl` took 18.5 hours to walk a 60GB filesystem (`C:\`) in a Windows VM.
 
 ### author
 
