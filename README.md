@@ -12,12 +12,12 @@ It is a good idea to leave a trailing backslash on each passed path:
 > `dicrawl C:\`
 
 This will create a subfolder, dircrawl, from wherever it is invoked,
-and within there, another subfolder with the timestamp (yymmdd.HHMMSS),
+and within there, another subfolder with the timestamp (`yymmdd.HHMMSS`),
 and in there, four log files: {dir,file,error,crawl}.log.
 
 ### details
 
-The compiled dicrawl.exe executable:
+The compiled `dicrawl.exe` executable:
   * runs from the Windows command line;
   * takes one or more paths as argument(s), placing them in a queue for processing;
   * processes each path as the root of a new directory tree;
@@ -42,7 +42,7 @@ where `dircrawl` was invoked:
 
 A unique log folder (`logDir`), a subfolder of 'dircrawl', is created
 for each run using the timestamp when the executable was started
-(with format 'yymmdd.HHMMSS' in local time to the nearest second);
+(with format '`yymmdd.HHMMSS`' in local time to the nearest second);
 the log files from the current crawl are placed in here.
 
 The directory and file logs are written in a format suitable for import
