@@ -54,7 +54,7 @@ into a relational database, which has been successfully used to detect:
 
 The relational fields added are:
   * `dirID` -- a unique directory ID for each directory and file
-  * `parID` -- the unique parent directory ID for each directory
+  * `parID` -- the parent directory ID for each directory
 
 There is some flexibility in the source code to write to flat files,
 tab-delimited text files, or a combination of both (fiels with space padding).
