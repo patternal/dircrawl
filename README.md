@@ -52,6 +52,10 @@ into a relational database, which has been successfully used to detect:
   * changed/different files (with the same filename but different contents),
   * and patterns of these for reconstructing history of projects over time.
 
+The relational fields added are:
+  * `dirID` -- a unique directory ID for each directory and file
+  * `parID` -- the unique parent directory ID for each directory
+
 There is some flexibility in the source code to write to flat files,
 tab-delimited text files, or a combination of both (fiels with space padding).
 
