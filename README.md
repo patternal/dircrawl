@@ -37,20 +37,20 @@ The compiled dicrawl.exe executable:
   * This (directory & file) info is logged into separate log files,
   into a subfolder of the current directory from the command shell
   where dircrawl was invoked:
-    1. dir.log   -- directory names & information
-    2. file.log  -- file names, sums & information
-    3. error.log -- error messages (e.g. filename with path was too long, could not access file...)
-    4. crawl.log -- log counts and statistics (total size, time, processing rate)
+    * dir.log   -- directory names & information
+    * file.log  -- file names, sums & information
+    * error.log -- error messages (e.g. filename with path was too long, could not access file...)
+    * crawl.log -- log counts and statistics (total size, time, processing rate)
   * First, a subdirectory named dircrawl is created;
   next, a subdirectory of this (logDir) is created with the timestamp,
   (yymmdd.HHMMSS) in local time to the nearest second, as directory name;
   finally the log files from the current crawl are placed in here.
   * The directory and file logs are written in a format suitable for import
-  into a relational database, which has been successfully used to detect
-    1. filesystem anomalies,
-    2. duplicate (renamed) files,
-    3. changed/different files (with the same filename but different contents),
-    4. and patterns of these for reconstructing history of projects over time.
-There is some flexibility in the source code to write to flat files,
-tab-delimited text files, or a combination of both (fiels with space padding).
+  into a relational database, which has been successfully used to detect:
+    * filesystem anomalies,
+    * duplicate (renamed) files,
+    * changed/different files (with the same filename but different contents),
+    * and patterns of these for reconstructing history of projects over time.
+  * There is some flexibility in the source code to write to flat files,
+  tab-delimited text files, or a combination of both (fiels with space padding).
 
