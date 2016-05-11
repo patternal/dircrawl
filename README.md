@@ -74,7 +74,9 @@ the history of workflows with file-based artifacts.
 
 ### performance
 
-`dircrawl` took 18.5 hours to walk a 60GB filesystem (`C:\`) in a Windows VM.
+`dircrawl` took 18.5 hours to walk a 60GB filesystem (`C:\`) in a
+Windows VM, computing MD5 hash sums of every file it had access to
+(which excludes swap files, for example).
 
 ### author
 
