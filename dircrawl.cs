@@ -1,8 +1,47 @@
 //
 // dircrawl.cs -- walk directory tree(s) and list files with their MD5 sums
 //
-// author: Ben Ginsberg
-// emails: bginsbg@gmail.com
+// The compiled dicrawl.exe executable:
+//   runs from the Windows command line;
+//   takes one or more paths as argument(s), placing them in a queue for processing;
+//   processes each path as the root of a new directory tree;
+//   walks each directory tree (traversing them inorder effectively using a stack),
+//     with some effort avoiding cycles (if absolute paths are given;
+//     no concerted effort is yet made to detect cycles involving "soft" symlinks);
+//   when folders are walked,
+//     directory information is obtained:
+//       file size
+//       file/folder dates (creation, last modification, last access)
+//     and file (MD5 or SHA256) hash sums are computed
+//       (which algorithm is currently determined at compile time);
+//       since this slows down the walk, I've called it "crawl".
+//   This (directory & file) info is logged into separate log files,
+//   into a subfolder of the current directory from the command shell
+//   where dircrawl was invoked:
+//     ./dircrawl/yymmdd.HHMMSS/dir.log   -- directory names & information
+//     ./dircrawl/yymmdd.HHMMSS/file.log  -- file names, sums & information
+//     ./dircrawl/yymmdd.HHMMSS/error.log -- error messages (e.g. filename with path was too long, could not access file...)
+//     ./dircrawl/yymmdd.HHMMSS/crawl.log -- log counts and statistics (total size, time, processing rate)
+//   First, a subdirectory named dircrawl is created;
+//   next, a subdirectory of this (logDir) is created with the timestamp,
+//   in local time to the nearest second, as directory name;
+//   finally the log files from the current crawl are placed in here.
+//   The directory and file logs are written in a format suitable for import
+//   into a relational database, which has been successfully used to detect
+//     filesystem anomalies,
+//     duplicate (renamed) files,
+//     changed/different files (with the same filename but different contents),
+//     and patterns of these for reconstructing history of projects over time.
+//   There is some flexibility in the source code to write to flat files,
+//   tab-delimited text files, or a combination of both (fiels with space padding).
+//
+// Reducing Errors from Long (Directory+)File Names:
+//   The walking generates errors (for the error log) when the path and file names
+//   together exceed an operating system limit of about 280 characters.
+//   If the code for walking directory trees was re-written to use a stack,
+//   with suitable "push" and "pop" changing of directory, it might be possible
+//   to push this limit up, by avoiding the directory names being included
+//   in that limit (in the calls to System.IO.DirectoryInfo/FileInfo).
 //
 // history:
 //   TODO!        walk directory tree(s) with a stack to minimize/avoid long file/directory name errors
@@ -16,6 +55,9 @@
 //                fixed error handling for directories ending in space; ...
 //   2013-07-31   Adapted from MSDN sample code:
 //                http://msdn.microsoft.com/en-us/library/bb513869.aspx
+//
+// author: Ben Ginsberg
+// email: bginsbg@gmail.com
 //
 using System;
 using System.Collections;
@@ -297,8 +339,8 @@ public class DirCrawl
 		string startTime = DateTimeTo6dot6(t0 = DateTime.Now);
 		string logDir    = String.Format(@"{0}\dircrawl\{1}", startDir, startTime); // this should always be a new directory unless OS is time traveling!
 
-//logDir = logDir.ToLower();
-//Console.WriteLine("logDir = {0}", logDir);
+    //logDir = logDir.ToLower();
+    //Console.WriteLine("logDir = {0}", logDir);
 
 		if (!FindOrMakeDir(logDir)) return; // use existing directory if for some reason it already exists
 		notDir.Add(logDir.ToLower(), true); // exclude the logfile directory from traversal
@@ -536,6 +578,7 @@ public class DirCrawl
 		errLog.Flush();
 		actLog.Flush();
 
-	} // TraverseTree
-}
+	} // method TraverseTree
+
+} // class DirCrawl
 
