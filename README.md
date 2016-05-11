@@ -1,25 +1,14 @@
-## summary
+### summary
 
 dircrawl is a command line utility to recursively traverse directories,
 logging file and (sub)folder information and file (MD5/SHA256) hash sums
 in a format suitable for import into a relational database.
 
-## history
+dircrawl has been designed for fast logging of a snapshot of a filesystem
+and its contents, for example as an analytical supplement to offline backups,
+and for easy import into R or a SQL database for subsequent processing.
 
-dircrawl was successfully used to detect files changed from a
-last offline backup in a networked environment from a compromised host,
-to characterize the attack as ransomware, and to restore the files
-that had been encrypted by the ransomware (before it was turned off)
-from their last good backup.
-
-dircrawl was also used to detect redundancy and to reconstruct
-the history of workflows with file-based artifacts.
-
-## author
-
-Ben Ginsberg, bginsbg {AT} gmail {DOT} com
-
-## details
+### details
 
 The compiled dicrawl.exe executable:
   * runs from the Windows command line;
@@ -58,4 +47,21 @@ into a relational database, which has been successfully used to detect:
 
 There is some flexibility in the source code to write to flat files,
 tab-delimited text files, or a combination of both (fiels with space padding).
+
+MySQL import, and MySQL & R analysis scripts might be available upon request.
+
+### history
+
+dircrawl was successfully used to detect files changed from a
+last offline backup in a networked environment from a compromised host,
+to characterize the attack as ransomware, and to restore the files
+that had been encrypted by the ransomware (before it was turned off)
+from their last good backup.
+
+dircrawl was also used to detect redundancy and to reconstruct
+the history of workflows with file-based artifacts.
+
+### author
+
+Ben Ginsberg, bginsbg {AT} gmail {DOT} com
 
