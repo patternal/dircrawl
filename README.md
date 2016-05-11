@@ -1,10 +1,10 @@
 ### summary
 
-dircrawl is a command line utility to recursively traverse directories,
+`dircrawl` is a command line utility to recursively traverse directories,
 logging file and (sub)folder information and file (MD5/SHA256) hash sums
 in a format suitable for import into a relational database.
 
-dircrawl has been designed for fast logging of a snapshot of a filesystem
+`dircrawl` has been designed for fast logging of a snapshot of a filesystem
 and its contents, for example as an analytical supplement to offline backups,
 and for easy import into R or a SQL database for subsequent processing.
 
@@ -27,15 +27,15 @@ When folders are walked,
 
 This (directory & file) info is logged into separate log files,
 into a subfolder of the current directory from the command shell
-where dircrawl was invoked:
+where `dircrawl` was invoked:
   * dir.log   -- directory names & information
   * file.log  -- file names, sums & information
   * error.log -- error messages (e.g. filename with path was too long, could not access file...)
   * crawl.log -- log counts and statistics (total size, time, processing rate)
 
-A unique log folder, a subfolder of 'dircrawl', is created for each run
-using the timestamp when the executable was started
-(yymmdd.HHMMSS in local time to the nearest second).
+A unique log folder (`logDir`), a subfolder of 'dircrawl', is created
+for each run using the timestamp when the executable was started
+(with format 'yymmdd.HHMMSS' in local time to the nearest second);
 the log files from the current crawl are placed in here.
 
 The directory and file logs are written in a format suitable for import
@@ -52,13 +52,13 @@ MySQL import, and MySQL & R analysis scripts might be available upon request.
 
 ### history
 
-dircrawl was successfully used to detect files changed from a
+`dircrawl` was successfully used to detect files changed from a
 last offline backup in a networked environment from a compromised host,
 to characterize the attack as ransomware, and to restore the files
 that had been encrypted by the ransomware (before it was turned off)
 from their last good backup.
 
-dircrawl was also used to detect redundancy and to reconstruct
+`dircrawl` was also used to detect redundancy and to reconstruct
 the history of workflows with file-based artifacts.
 
 ### author
